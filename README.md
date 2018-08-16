@@ -1,3 +1,7 @@
+Fork details
+============
+This fork removes type information for Python completion. This speeds up the process a lot.
+
 ycmd: a code-completion & comprehension server
 ==============================================
 
