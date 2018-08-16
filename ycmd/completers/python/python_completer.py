@@ -190,13 +190,22 @@ class PythonCompleter( Completer ):
 
   def ComputeCandidatesInner( self, request_data ):
     with self._jedi_lock:
-      return [ responses.BuildCompletionData(
+      completions = [ responses.BuildCompletionData(
         insertion_text = completion.name,
         extra_menu_info = completion.description,
         detailed_info = completion.docstring(),
         kind = completion.type,
         extra_data = self._GetExtraData( completion )
       ) for completion in self._GetJediScript( request_data ).completions() ]
+
+      # completions += [responses.BuildCompletionData(
+      #   insertion_text = "print",
+      #   extra_menu_info = "    ▸ jedi",
+      #   detailed_info = "",
+      #   kind = "",
+      #   extra_data = None
+      # )]
+      return completions
 
 
   def GetSubcommandsMap( self ):
